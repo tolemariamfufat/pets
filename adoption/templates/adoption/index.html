@@ -1,0 +1,69 @@
+{% extends "adoption/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+
+    <div class="p-3 mb-4 bg-light border round-3">   
+         <div class="col-md-12">
+            <h3 class="display-4"> PetAdoption </h3>
+            <p class="lead">
+                Welcome to <i>PetAdoption</i>, 
+                PetAdoption is a platform designed to connect loving homes with animals in need. Our mission is to facilitate the adoption of pets by providing a user-friendly platform that showcases adoptable animals, educates potential adopters, and streamlines the adoption process.
+
+                We believe that every animal deserves a loving home, and we are committed to helping find perfect matches between pets and their future families. Join us in making a difference in the lives of animals and their human companions.
+
+
+            </p>
+         </div>
+    </div>
+
+    <h3> Meet our friends: </h3>
+
+    <div class="container">
+        <div class="row">
+        {% for pet in pets %}
+        <div class="card mb-3 mx-auto" style="max-width: 400px;">  
+            <div class="ro g-0"> 
+                <div class="col-md-4 d-flex justify-content-center">
+                    {% if pet.photo %}
+
+                    <img src="{{ pet.photo.url}}"
+                             alt="{{ pet.name}}"
+                             class="img-fluid rounded shadow">
+                    {% else %}
+                    <img src="https://placeholder.co/800?text=Placeholder+Text"
+                    alt="{{ recipe.name }}"
+                    class="img-fluid rounded shadow">   
+
+                    {% endif %}               
+                
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pet.name}}</h5>
+                        <p> Description:</p>
+                        <p class="card-text">{{ pet.description |truncatechars:50 }}</p>                        
+                        <small> 
+                            <a href="{% url "adoption:pet_details" pet_id=pet.id %}">View {{ pet }} details</a> 
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>        
+
+            
+        </div>
+        <div class="col-md-2 mb-2"> </div>
+        {% endfor %}
+    </div>
+    
+    
+    </div>
+
+{% endblock content %}
+    

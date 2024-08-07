@@ -1,0 +1,23 @@
+{% extends "adoption/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1>{{ pet.name }}</h1>
+<small>{{ pet.description }}</small>
+<div>
+<img src="{{ pet.photo.url}}" alt="Photo of {{pet.name}}">
+</div>
+<div class="container mt-4">
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form%}
+    {% bootstrap_button button_type="submit" content="Submit" %}
+    
+</form>
+</div>
+{% endblock content %}
+
+
+
+
+   
